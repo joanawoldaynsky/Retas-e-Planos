@@ -67,7 +67,7 @@ function retas(ponto1,ponto2,vetor1, vetor2){
         const retaX2 = ponto2[0]+"+"+vetor2[0]+"t"
         const retaY2 = ponto2[1]+"+"+vetor2[1]+"t"
         const retaZ2 = ponto2[2]+"+"+vetor2[2]+"t"
-        console.log("r2:\n\t|X = " + retaX2 + "\n\t|Y = "+retaY2+"\n\t|Z = "+retaZ2)
+        console.log("r2:\n\t|X = " + retaX2 + "\n\t|Y = "+retaY2+"\n\t|Z = "+retaZ2+"\n")
        
         /////////////CALCULO DE H E T//////////////
         const h = (ponto2[0] - ponto1[0] + vetor2[0]) / vetor2[0];
@@ -75,7 +75,7 @@ function retas(ponto1,ponto2,vetor1, vetor2){
 
         /////////////CALCULO DOS NOVOS PONTOS//////////////
         ponto1[0] = (ponto2[0] - ponto1[0] + vetor2[0]) - (vetor2[0] * (ponto2[1] - ponto1[1] + vetor2[1]) / vetor1[1]) / (vetor2[0] - (vetor2[1] * vetor2[0]) / vetor1[1]);
-        console.log("\nX0 = " + ponto1[0]);
+        console.log("X0 = " + ponto1[0]);
         
         ponto2[0] = ponto1[0] + h;
         console.log("X1 = " + ponto2[0]);
@@ -89,8 +89,18 @@ function retas(ponto1,ponto2,vetor1, vetor2){
         console.log("Z da reta r1 = " + zR1);
         console.log("Z da reta r2 = " + zR2);
         
+        /////////////CALCULO DO ÂNGULO//////////////
+        const produtoEscalar = (vetor1[0]*vetor2[0]+vetor1[1]*vetor2[1]+vetor1[2]*vetor2[2]);
+        
+        const distV1 = Math.sqrt(Math.pow(vetor1[0],2)+ Math.pow(vetor1[1],2)+Math.pow(vetor1[2],2));
+        const distV2 = Math.sqrt(Math.pow(vetor2[0],2)+ Math.pow(vetor2[1],2)+Math.pow(vetor2[2],2));
+
+        const angulo = ((Math.acos(produtoEscalar/(distV1*distV2))*180)/Math.PI).toFixed(2);
+        
         if (zR1 === zR2){
-            console.log("\nAs retas são concorrentes e se interceptam em:" + ponto1[0] + ", " + ponto1[1]+ ","+zR1);
+            console.log("\nAs retas são concorrentes e se interceptam no ponto:(" + ponto1[0] + "," + ponto1[1]+ ","+zR1 +")\n");
+            console.log("Ângulo:" + angulo+"º")
+            
         }else{
             ///////////////RETAS REVERSAS//////////////
             console.log("\nAs retas 1 e 2 são reversas")
