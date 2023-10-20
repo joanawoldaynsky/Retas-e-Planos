@@ -4,3 +4,5 @@
 
 > As diretrizes do trabalho são encontradas em [PDF](https://pucminas.instructure.com/courses/161281/files/9668996?wrap=1)
 
+#
+## Como executar
