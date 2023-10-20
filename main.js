@@ -50,10 +50,10 @@ function retas(ponto1,ponto2,vetor1, vetor2){
         t_1_reta[2] = (ponto1[2]-ponto2[2])/vetor2[2]
         console.log("\t|tx = " + t_1_reta[0] + "\n\t|ty = "+t_1_reta[1]+"\n\t|tz = "+t_1_reta[2])
         if(t_1_reta[0] == t_1_reta[1] &&  t_1_reta[1] == t_1_reta[2]){
-            console.log("\n As retas são paralelas coincidentes")
+            console.log("\n As retas são paralelas coincidentes\n\n")
         }
         else{
-             console.log("\nAs retas são paralelas distintas")
+             console.log("\nAs retas são paralelas distintas\n\n")
         }
        
         /////////////RETAS CONCORRENTES//////////////
@@ -99,19 +99,18 @@ function retas(ponto1,ponto2,vetor1, vetor2){
         
         if (zR1 === zR2){
             console.log("\nAs retas são concorrentes e se interceptam no ponto:(" + ponto1[0] + "," + ponto1[1]+ ","+zR1 +")\n");
-            console.log("Ângulo:" + angulo+"º")
+            console.log("Ângulo:" + angulo+"º\n\n")
             
         }else{
             ///////////////RETAS REVERSAS//////////////
-            console.log("\nAs retas 1 e 2 são reversas")
+            console.log("\nAs retas 1 e 2 são reversas\n\n")
         }
     }
 }
 
 
-
-function plano(ponto,vetor,reta){
-    
+function plano(ponto,vetor,pontoIntersecao,vetorIntersecao){
+            //[x2,y2,z2], [abc],[x0,y0,z0],[def]
     let pontoDoPlano = ["x","y","z"]
     
     /////////DEFINIÇÃO DOS VALORES PASSADOS//////////////
@@ -134,14 +133,34 @@ function plano(ponto,vetor,reta){
     const equacao = (vetor[0]+"x + "+vetor[1]+"y + " + vetor[2]+"z " + valorFinalD +" = 0");
     console.log("A equação do plano é :" + equacao+"\n")
     
-    ////////////CAULCULO DA INTERSEÇÃO////////////////
+    ////////////CALCULO DA INTERSEÇÃO////////////////
+    const retaX = pontoIntersecao[0]+"+"+vetorIntersecao[0]+"t"
+    const retaY = pontoIntersecao[1]+"+"+vetorIntersecao[1]+"t"
+    const retaZ = pontoIntersecao[2]+"+"+vetorIntersecao[2]+"t"
+    console.log("r:\t|X = " + retaX + "\n\t|Y = "+retaY+"\n\t|Z = "+retaZ+"\n")
     
+    ////////////CALCULO DO VALOR DE T////////////////
+    var t = (-vetor[0] * pontoIntersecao[0] - vetor[1] * pontoIntersecao[1] - vetor[2] * pontoIntersecao[2] - valorFinalD) / (vetor[0] * vetorIntersecao[0] + vetor[1] * vetorIntersecao[1] + vetor[2] * vetorIntersecao[2]);
+    console.log("Valor de t é:"+t+"\n")
+    
+    ////////////CALCULO DOS NOVOS PONTOS////////////////
+    const pontoX0 = pontoIntersecao[0]+vetorIntersecao[0]*t
+    const pontoY0 = pontoIntersecao[1]+vetorIntersecao[1]*t
+    const pontoZ0 = pontoIntersecao[2]+vetorIntersecao[2]*t
+    console.log(`A interseção da reta com o plano é no ponto (${pontoX0},${pontoY0},${pontoZ0})`)
+    
+    ////////////CALCULO DO ANGULO////////////////    
+    var cos = Math.acos(Math.abs((vetorIntersecao[0] * vetor[0] + vetorIntersecao[1] * vetor[1] + vetorIntersecao[2]* vetor[2]) / (Math.sqrt(Math.pow(vetorIntersecao[0],2)+  Math.pow(vetorIntersecao[1],2) + Math.pow(vetorIntersecao[2],2)) * Math.sqrt(Math.pow(vetor[0],2) + Math.pow(vetor[1],2)+ Math.pow(vetor[2],2)))));
+    var angulo = (90 - (cos * 180 / Math.PI)).toFixed(2);
+    console.log(`Ângulo de:${angulo}º`)
+
 }
 
-
-console.log("Calculo do plano\n")
-plano([3,2,1],[1,2,3],[1,7,8])
-
-console.log("Calculo da equação da reta\n")
+console.log("---------------Calculo da equação da reta---------------\n")
 retas([2,5,0],[0,0,0],[2,2,2],[1,3,2])
 // [x0,y0,z0], [x1,y1,z1], [abc], [def]
+
+
+console.log("\n\n---------------Calculo do plano---------------\n")
+plano([1,0,0],[2,-1,3],[-1,5,3],[2,3,-1])
+    //[x2,y2,z2], [abc],[x0,y0,z0],[def]
