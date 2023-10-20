@@ -108,6 +108,40 @@ function retas(ponto1,ponto2,vetor1, vetor2){
     }
 }
 
+
+
+function plano(ponto,vetor,reta){
+    
+    let pontoDoPlano = ["x","y","z"]
+    
+    /////////DEFINIÇÃO DOS VALORES PASSADOS//////////////
+   
+    console.log("O ponto A é:("+ponto+ ")")
+    console.log("O ponto no plano é:("+pontoDoPlano+ ")")
+    console.log("\nO vetor é:("+vetor+ ")")
+    console.log("\nA equação do plano é: ax + by + cz + d = 0")
+   
+   ////////////EQUAÇÃO DO PLANO////////////////
+   
+    const AP = (pontoDoPlano[0] + "-" + ponto[0] + ","+ pontoDoPlano[1] +"-" +ponto[1] +","+ pontoDoPlano[2]+"-" + ponto[2]);
+    console.log ("AP = "+ AP)
+    var d = -(vetor[0]*ponto[0] + vetor[1] * ponto[1] + vetor[2] * ponto[2]);
+    console.log(`A variável d é igual a = ${d}`)
+    const aX = vetor[0]*ponto[0]
+    const bY = vetor[0]*ponto[1]
+    const cZ = vetor[0]*ponto[2]
+    const valorFinalD = (-aX + (-bY)+ (-cZ) + d)
+    const equacao = (vetor[0]+"x + "+vetor[1]+"y + " + vetor[2]+"z " + valorFinalD +" = 0");
+    console.log("A equação do plano é :" + equacao+"\n")
+    
+    ////////////CAULCULO DA INTERSEÇÃO////////////////
+    
+}
+
+
+console.log("Calculo do plano\n")
+plano([3,2,1],[1,2,3],[1,7,8])
+
 console.log("Calculo da equação da reta\n")
 retas([2,5,0],[0,0,0],[2,2,2],[1,3,2])
 // [x0,y0,z0], [x1,y1,z1], [abc], [def]
