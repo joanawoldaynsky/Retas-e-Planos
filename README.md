@@ -6,3 +6,7 @@
 
 #
 ## Como executar
+
+Para executar o código, é preciso preencher os valores dos pontos e retas da execução de cada função (Retas e Planos):
+
+
